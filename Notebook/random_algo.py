@@ -138,47 +138,6 @@ for i in range(5):
     pool_images = np.delete(pool_images, batch_indices, axis=0)
     pool_labels = np.delete(pool_labels, batch_indices, axis=0)
 
-    # all_predictions = np.zeros(shape=(pool_batch_images.shape[0], 1))
-    # for i in range(10):
-    #     predictions = model.predict(pool_batch_images)
-    # #     print(predictions)
-    #     predictions = predictions.argmax(axis=1)
-    #     predictions = predictions[..., np.newaxis]
-    # #     print(predictions)
-    # #     all_predictions[:, :-1] = predictions
-    #     all_predictions = np.append(all_predictions, predictions, axis=1)
-    #
-    # variation = np.zeros(shape=(pool_batch_images.shape[0]))
-    #
-    # for t in range(pool_batch_images.shape[0]):  # for every row in all_predictions (so every data point in pool subset)
-    #     L = np.array([0])
-    #     for i in range(10):
-    #         L = np.append(L, all_predictions[t, i + 1])
-    #
-    #     Predicted_Class, Mode = mode(L[1:].astype(int))
-    #     # print(Predicted_Class, Mode)
-    #     v = np.array([1 - Mode / float(10)])
-    #     #     print(v)
-    #     variation[t] = v
-    #
-    # variation_fl = variation.flatten()
-    # pool_index_toadd = variation_fl.argsort()[::-1][:amount_used_samples]
-    #
-    # images_toadd = pool_batch_images[pool_index_toadd, :, :, :]
-    #
-    # labels_toadd = pool_batch_labels[pool_index_toadd]
-
-    # Delete the images that are added to the labelled group
-    # pool_batch_images = np.delete(pool_batch_images, pool_index_toadd, axis=0)
-
-    # Delete the labels that are added to the labelled group
-    # pool_batch_labels = np.delete(pool_batch_labels, pool_index_toadd, axis=0)
-
-    # Add the images from the batch to the pool with unlabelled images
-    # pool_images = np.append(pool_images, pool_batch_images, axis=0)
-    #
-    # pool_labels = np.append(pool_labels, pool_batch_labels, axis=0)
-
     train_images_labelled = np.append(train_images_labelled, pool_batch_images, axis=0)
 
     train_labels_labelled = np.append(train_labels_labelled, pool_batch_labels, axis=0)
